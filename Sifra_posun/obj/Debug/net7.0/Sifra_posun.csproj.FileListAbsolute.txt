@@ -1,0 +1,15 @@
+/Users/dusan/My_data/obecne/CSharp/Skoleni/Projekt_sifra/Sifra_posun/Sifra_posun/bin/Debug/net7.0/Sifra_posun
+/Users/dusan/My_data/obecne/CSharp/Skoleni/Projekt_sifra/Sifra_posun/Sifra_posun/bin/Debug/net7.0/Sifra_posun.deps.json
+/Users/dusan/My_data/obecne/CSharp/Skoleni/Projekt_sifra/Sifra_posun/Sifra_posun/bin/Debug/net7.0/Sifra_posun.runtimeconfig.json
+/Users/dusan/My_data/obecne/CSharp/Skoleni/Projekt_sifra/Sifra_posun/Sifra_posun/bin/Debug/net7.0/Sifra_posun.dll
+/Users/dusan/My_data/obecne/CSharp/Skoleni/Projekt_sifra/Sifra_posun/Sifra_posun/bin/Debug/net7.0/Sifra_posun.pdb
+/Users/dusan/My_data/obecne/CSharp/Skoleni/Projekt_sifra/Sifra_posun/Sifra_posun/obj/Debug/net7.0/Sifra_posun.csproj.AssemblyReference.cache
+/Users/dusan/My_data/obecne/CSharp/Skoleni/Projekt_sifra/Sifra_posun/Sifra_posun/obj/Debug/net7.0/Sifra_posun.GeneratedMSBuildEditorConfig.editorconfig
+/Users/dusan/My_data/obecne/CSharp/Skoleni/Projekt_sifra/Sifra_posun/Sifra_posun/obj/Debug/net7.0/Sifra_posun.AssemblyInfoInputs.cache
+/Users/dusan/My_data/obecne/CSharp/Skoleni/Projekt_sifra/Sifra_posun/Sifra_posun/obj/Debug/net7.0/Sifra_posun.AssemblyInfo.cs
+/Users/dusan/My_data/obecne/CSharp/Skoleni/Projekt_sifra/Sifra_posun/Sifra_posun/obj/Debug/net7.0/Sifra_posun.csproj.CoreCompileInputs.cache
+/Users/dusan/My_data/obecne/CSharp/Skoleni/Projekt_sifra/Sifra_posun/Sifra_posun/obj/Debug/net7.0/Sifra_posun.dll
+/Users/dusan/My_data/obecne/CSharp/Skoleni/Projekt_sifra/Sifra_posun/Sifra_posun/obj/Debug/net7.0/refint/Sifra_posun.dll
+/Users/dusan/My_data/obecne/CSharp/Skoleni/Projekt_sifra/Sifra_posun/Sifra_posun/obj/Debug/net7.0/Sifra_posun.pdb
+/Users/dusan/My_data/obecne/CSharp/Skoleni/Projekt_sifra/Sifra_posun/Sifra_posun/obj/Debug/net7.0/Sifra_posun.genruntimeconfig.cache
+/Users/dusan/My_data/obecne/CSharp/Skoleni/Projekt_sifra/Sifra_posun/Sifra_posun/obj/Debug/net7.0/ref/Sifra_posun.dll
