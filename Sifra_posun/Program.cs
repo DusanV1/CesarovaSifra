@@ -40,11 +40,32 @@ class Program
         
     }
 
+    public static string Encription(string text, int shift)
+    {
+        string textShift = string.Empty;
+
+        foreach (char item in text)
+        {
+
+            if (!char.IsLetter(item))
+            {
+                textShift += item;
+            }
+            else
+            {
+                textShift += ShiftedLetter(item, shift);
+            }
+
+
+        }
+        return textShift;
+    }
+
     public static string Decription(string text)
     {
         List<string> decriptedTexts = new List<string>();
         List<double> charFreqNum = new List<double>();
-        //string helpText = string.Empty;
+        
 
         for (int i=1; i<=26; i++)
         {
@@ -52,7 +73,7 @@ class Program
             {
                 decriptedTexts.Add(Encription(text, i));
 
-                //helpText = Encription(text, i);
+                
                 int o= Encription(text, i).Count(x => x == 'o');
                 int e = Encription(text, i).Count(x => x == 'e');
                 int a = Encription(text, i).Count(x => x == 'a');
@@ -65,10 +86,6 @@ class Program
         
         return decriptedTexts[index]; ;
     }
-
-    //dve metody jedna posune pismeno o int shift a druha ze dvou pismen urci shift, tak abych nemusel opakovat
-    //ty dva listy s abecedou
-    
 
     public static char ShiftedLetter(char letter, int shift) 
     {
@@ -125,25 +142,6 @@ class Program
 
     
 
-    public static string Encription(string text,int shift)
-    {
-        string textShift = string.Empty;
-        
-        foreach (char item in text)
-        {
-            
-            if (!char.IsLetter(item) )
-            {
-                textShift += item;
-            }
-            else
-            {
-                textShift += ShiftedLetter(item, shift);
-            }
-
-
-        }
-        return textShift;
-    }
+    
 }
 
