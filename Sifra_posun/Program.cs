@@ -3,7 +3,9 @@
 namespace Sifra_posun;
 class Program
 {
-    
+    public static List<char> lowerChars = new List<char>() { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
+    public static List<char> upperChars = new List<char>() { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+
 
     static void Main(string[] args)
     {
@@ -35,9 +37,25 @@ class Program
         Console.WriteLine();
         
         Console.WriteLine("Posunuti sifry:");
-        Console.WriteLine(ShiftedLetter(textShift[0], Decription(textShift)[0]));
+        //Console.WriteLine(ShiftedLetter(textShift[0], Decription(textShift)[0]));
+        int letterShift = ShiftedLetter(textShift, Decription(textShift));
+        if(letterShift<0)
+        {
+            Console.WriteLine($"Posunuti je {letterShift}, eventualne {26 + letterShift}");
+        }else
+        {
+            if(letterShift==999)
+            {
+                Console.WriteLine("Veta neobsahuje pismeno na kterym by se dalo zjistit posunuti.");
+            }else
+            {
+                Console.WriteLine($"Posunuti je {letterShift}, eventualne {letterShift - 26}");
+            }
+            
+        }
+        //Console.WriteLine(ShiftedLetter2(textShift, Decription(textShift)));
 
-        
+
     }
 
     public static string Encription(string text, int shift)
@@ -46,17 +64,7 @@ class Program
 
         foreach (char item in text)
         {
-
-            if (!char.IsLetter(item))
-            {
-                textShift += item;
-            }
-            else
-            {
-                textShift += ShiftedLetter(item, shift);
-            }
-
-
+            textShift += ShiftedLetter(item, shift);
         }
         return textShift;
     }
@@ -87,61 +95,79 @@ class Program
         return decriptedTexts[index]; ;
     }
 
-    public static char ShiftedLetter(char letter, int shift) 
-    {
-        List<char> chars = new List<char>() { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
-        char resultedLetter;
-        int index;
-        bool lowered=false;
+    
 
+    public static char ShiftedLetter(char letter, int shift)
+    {
         
-        if(char.IsUpper(letter))
+
+        if (FindIndex(letter)[1]==0)
         {
-            index = chars.FindIndex(a => a == char.ToLower(letter));
-            lowered = true;
+            //index = lowerChars.FindIndex(a => a == letter);
+            return lowerChars[(FindIndex(letter)[0] + shift) % 26]; // pouzit modulo %
+
+        }
+        else if(FindIndex(letter)[1] == 1)
+        {
+            //index = upperChars.FindIndex(a => a == letter);
+            return upperChars[(FindIndex(letter)[0] + shift) % 26];
         }
         else
         {
-            index = chars.FindIndex(a => a == letter);
+            return letter;
         }
-        
 
-        if (index+shift<26)
+    }
+
+    
+
+    public static int ShiftedLetter(string encriptedString, string decriptedString)
+    {
+   
+        int i = 0;
+        while (!(FindIndex(encriptedString[i])[0] >=0) && !(FindIndex(decriptedString[i])[0] >= 0 )&& i<encriptedString.Length)
         {
-            resultedLetter = chars[index + shift];
+            i++;
+        }
+
+        if(i<encriptedString.Length)
+        {
+            return FindIndex(encriptedString[i])[0] - FindIndex(decriptedString[i])[0];
         }else
         {
-            resultedLetter = chars[index + shift - ((index + shift) / 26) * 26];
+            return 999;  //no character in the string;
         }
-
-        if(lowered)
-        {
-            resultedLetter = char.ToUpper(resultedLetter);
-        }
-
-        return resultedLetter;
+        
     }
 
-    public static int ShiftedLetter(char encriptedLetter, char decriptedLetter)
+    public static List<int> FindIndex(char letter)
     {
-        List<char> chars = new List<char>() { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
 
-        if (char.IsUpper(encriptedLetter))
+        List<int> result = new List<int>();
+        int lowerIndex= lowerChars.FindIndex(a => a == letter);
+        int upperIndex= upperChars.FindIndex(a => a == letter);
+
+        if(lowerIndex>=0)
         {
-            encriptedLetter = char.ToLower(encriptedLetter);
+            result.Add(lowerIndex);
+            result.Add(0);  //0=lower char
+            
+        }else if(upperIndex>=0)
+        {
+            result.Add(upperIndex);
+            result.Add(1);  //1=upper char
+            
+        }else
+        {
+            result.Add(-1);
+            result.Add(2);  //2 = char not in the list
         }
 
-        if (char.IsUpper(decriptedLetter))
-        {
-            decriptedLetter = char.ToLower(decriptedLetter);
-        }
+        return result;
 
-        int shift = chars.FindIndex(a => a == encriptedLetter) -chars.FindIndex(a => a == decriptedLetter);
-        return shift;
+        
     }
 
-    
-
-    
 }
 
+//volani x krat funkce misto aby se ulozila do promene
