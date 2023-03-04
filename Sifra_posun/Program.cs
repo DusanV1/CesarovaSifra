@@ -3,10 +3,7 @@
 namespace Sifra_posun;
 class Program
 {
-    public static List<char> lowerChars = new List<char>() { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
-    public static List<char> upperChars = new List<char>() { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
-
-
+    
     static void Main(string[] args)
     {
         Console.WriteLine("Napis ceskou vetu bez diakritiky, ktera bude zasifrovana.");
@@ -37,8 +34,8 @@ class Program
         Console.WriteLine();
         
         Console.WriteLine("Posunuti sifry:");
-        //Console.WriteLine(ShiftedLetter(textShift[0], Decription(textShift)[0]));
-        int letterShift = ShiftedLetter(textShift, Decription(textShift));
+        
+        int letterShift = Alphabet.ShiftedLetter(textShift, Decription(textShift));
         if(letterShift<0)
         {
             Console.WriteLine($"Posunuti je {letterShift}, eventualne {26 + letterShift}");
@@ -53,9 +50,7 @@ class Program
             }
             
         }
-        //Console.WriteLine(ShiftedLetter2(textShift, Decription(textShift)));
-
-
+        
     }
 
     public static string Encription(string text, int shift)
@@ -64,7 +59,7 @@ class Program
 
         foreach (char item in text)
         {
-            textShift += ShiftedLetter(item, shift);
+            textShift += Alphabet.ShiftedLetter(item, shift);
         }
         return textShift;
     }
@@ -95,79 +90,4 @@ class Program
         return decriptedTexts[index]; ;
     }
 
-    
-
-    public static char ShiftedLetter(char letter, int shift)
-    {
-        
-
-        if (FindIndex(letter)[1]==0)
-        {
-            //index = lowerChars.FindIndex(a => a == letter);
-            return lowerChars[(FindIndex(letter)[0] + shift) % 26]; // pouzit modulo %
-
-        }
-        else if(FindIndex(letter)[1] == 1)
-        {
-            //index = upperChars.FindIndex(a => a == letter);
-            return upperChars[(FindIndex(letter)[0] + shift) % 26];
-        }
-        else
-        {
-            return letter;
-        }
-
-    }
-
-    
-
-    public static int ShiftedLetter(string encriptedString, string decriptedString)
-    {
-   
-        int i = 0;
-        while (!(FindIndex(encriptedString[i])[0] >=0) && !(FindIndex(decriptedString[i])[0] >= 0 )&& i<encriptedString.Length)
-        {
-            i++;
-        }
-
-        if(i<encriptedString.Length)
-        {
-            return FindIndex(encriptedString[i])[0] - FindIndex(decriptedString[i])[0];
-        }else
-        {
-            return 999;  //no character in the string;
-        }
-        
-    }
-
-    public static List<int> FindIndex(char letter)
-    {
-
-        List<int> result = new List<int>();
-        int lowerIndex= lowerChars.FindIndex(a => a == letter);
-        int upperIndex= upperChars.FindIndex(a => a == letter);
-
-        if(lowerIndex>=0)
-        {
-            result.Add(lowerIndex);
-            result.Add(0);  //0=lower char
-            
-        }else if(upperIndex>=0)
-        {
-            result.Add(upperIndex);
-            result.Add(1);  //1=upper char
-            
-        }else
-        {
-            result.Add(-1);
-            result.Add(2);  //2 = char not in the list
-        }
-
-        return result;
-
-        
-    }
-
 }
-
-//volani x krat funkce misto aby se ulozila do promene
